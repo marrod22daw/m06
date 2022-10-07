@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ca">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<title>Càlcul de velocitats mitjanes</title>
+	</head>
+	<body>    
+		<p><b><u>APLICACIÓ PEL CÀLCUL DE VELOCITATS MITJANES</u></b></p>
+		<p>Per Martí Rodríguez</p>
+		<b>a) Introudeix les dades de velocitat en quilòmetres per hora (Km/h):<br></b>
+		<table>
+			<tbody>
+				<tr>
+					<td>Mostra de velocitat 1:</td>
+					<td><input type="text" name="vel[]" size="5" maxlength="6" value=0></td>
+					<td>Mostra de velocitat 2:</td>
+					<td><input type="text" name="vel[]" size="5" maxlength="6" value=0></td>
+				</tr>
+				 <tr>
+					<td>Mostra de velocitat 3:</td>
+					<td><input type="text" name="vel[]" size="5" maxlength="6" value=0></td>
+					<td>Mostra de velocitat 4:</td>
+					<td><input type="text" name="vel[]" size="5" maxlength="6" value=0></td>
+				 </tr>
+				 <tr>
+					<td>Mostra de velocitat 5:</td>
+					<td><input type="text" name="vel[]" size="5" maxlength="6" value=0></td>
+					<td>Mostra de velocitat 6:</td>
+					<td><input type="text" name="vel[]" size="5" maxlength="6" value=0></td>
+				 </tr>
+				 <tr>
+					<td>Mostra de velocitat 7:</td>
+					<td><input type="text" name="vel[]" size="5" maxlength="6" value=0></td>
+					<td>Mostra de velocitat 8:</td>
+					<td><input type="text" name="vel[]" size="5" maxlength="6" value=0></td>
+				 </tr>
+			</tbody>
+		</table>	
+		<br>
+        <b>b) Escull les unitats de velocitat del resultat:</b><br>
+        <input name="uv[]" value="kmh" type="checkbox" checked>Km per hora (Km/h)<br>
+        <input name="uv[]" value="mph" type="checkbox">Milles per hora (mph)<br>
+        <input name="uv[]" value="mps" type="checkbox">Metres per segon (m/s)<br>
+        <br>        
+        <button onclick='fCalculaMitjanes()'>Calcula mitjanes</button>
+		<button onclick='fNetejaDades()'>Neteja dades</button>
+		<p><b>RESULTATS:</b></p>
+		<p id="resultats"></p>
+		<button onclick='fNetejaResultats()'>Neteja resultats</button>
+		<script>
+			function fCalculaMitjanes() {
+			let a = 0;
+			let b = 0;
+			let c = 0;
+			let uv = document.getElementsByName('uv[]');
+			let vel = document.getElementsByName('vel[]');
+			for (let i = 0; i < vel.length; i++) {
+			a = parseInt(vel[i].value) + a;
+			}
+			a = a/8;
+  			if (uv[0].checked) {
+				document.getElementById('resultats').innerHTML+= a.toFixed(2) + "Km/h <br>";
+  			}
+			  if (uv[1].checked) {
+				b = a/1.609;
+				document.getElementById('resultats').innerHTML+= b.toFixed(2) + "Mph <br>";
+  			}
+			  if (uv[2].checked) {
+				c = a/3.6;
+				document.getElementById('resultats').innerHTML+= c.toFixed(2) + "m/s<br>";
+  			}	
+			}	
+			function fNetejaDades() {
+			let vel = document.getElementsByName('vel[]');	
+			for (let i = 0; i < vel.length; i++) {
+			vel[i].value = "0"; 
+			}
+			}
+						
+			function fNetejaResultats() {
+				document.getElementById('resultats').innerHTML=""; 		
+			}
+		</script>   
+	</body>
+</html>
